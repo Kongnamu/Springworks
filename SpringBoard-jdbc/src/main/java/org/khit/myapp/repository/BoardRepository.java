@@ -87,6 +87,7 @@ public class BoardRepository {
 		}
 		return board;
 	}
+	//글 삭제
 	public void delete(Long id) {
 		conn = JDBCUtil.getConnection();
 		String sql = "delete from boards where id = ?";
@@ -101,6 +102,7 @@ public class BoardRepository {
 			JDBCUtil.close(conn, pstmt);
 		}
 	}
+	//글 수정
 	public void update(BoardDTO board) {
 		conn = JDBCUtil.getConnection();
 		String sql = "update boards set boardtitle = ?, boardcontent = ? "
