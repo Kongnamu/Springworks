@@ -6,11 +6,39 @@
   
 <mapper namespace="com.khit.web.mapper.BoardMapper">
 	<insert id="insert">
-		insert into boards(boardtitle, boardwriter, boardcontent)
-		values(#{boardTitle}, #{boardWriter}, #{boardContent})
+		insert into boards(boardtitle, userId, boardcontent)
+		values(#{boardTitle}, #{userId}, #{boardContent})
 	</insert>
 	
 	<select id="getList" resultType="com.khit.web.dto.BoardDTO">
-		select * from boards;
+		select * from boards order by id desc;
+	</select>
+	
+	<select id="findById" resultType="com.khit.web.dto.BoardDTO">
+		select * from boards where id = #{id};
+	</select>
+	
+	<update id="updateHit">
+		update boards set hit = hit + 1 
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from boards where id = #{id}
+	</delete>
+	
+	<update id="update">
+		update boards set boardtitle = #{boardTitle}, boardcontent = #{boardContent},
+			updatedtime = now()
+		where id = #{id}
+	</update>
+	
+	<select id="pagingList" resultType="com.khit.web.dto.BoardDTO">
+	<!-- sql의 limit 명령어 사용 -->
+		select * from boards order by id desc limit #{start}, #{limit}
+	</select>
+	
+	<select id="boardCount" resultType="Integer">
+		select count(id) from boards
 	</select>
 </mapper>

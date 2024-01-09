@@ -1,7 +1,9 @@
 package org.khit.myapp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller //컴포넌트(@component 상속)
 public class HomeController {
@@ -12,5 +14,12 @@ public class HomeController {
 		
 		return "index"; //home.jsp
 	}
+	
+	// '/'경로에서 404에러 발생시
+		@GetMapping("Favicon.ico")
+		@ResponseBody // json또는 문자 데이터를 반환
+		public void returnNoFavicon() {
+			
+		}
 	
 }

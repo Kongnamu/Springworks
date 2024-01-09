@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khit.web.dto.UserDTO;
 import com.khit.web.service.UserService;
@@ -36,7 +37,7 @@ public class UserController {
 	public String join(@ModelAttribute UserDTO userDTO) {
 		log.info("userDTO: " + userDTO);
 		userService.insert(userDTO);
-		return "redirect:/";
+		return "redirect:/user/login";
 	}
 	//회원 목록
 	@GetMapping("/")
@@ -69,7 +70,7 @@ public class UserController {
 		UserDTO loginUser = userService.login(userDTO);
 		if(loginUser != null) {
 			session.setAttribute("sessionId", userDTO.getUserId());
-			return "redirect:/main";
+			return "redirect:/";
 		}else {
 			return "/user/login";
 		}
@@ -80,5 +81,39 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 삭제
 		return "redirect:/";
+	}
+	//회원 정보 수정
+	@GetMapping("/update")
+	public String update(Model model,
+			HttpSession session) {
+		//수정할 회원을 가져오기(세션이름으로)
+		String userId = (String)session.getAttribute("sessionId");
+		UserDTO userDTO = userService.findByUserId(userId);//sessionid(userId)로 상세보기
+		model.addAttribute("user", userDTO);
+		return "/user/userupdate";
+	}
+	//회원 정보 수정처리 
+	@PostMapping("/update")
+	public String update(@ModelAttribute UserDTO userDTO) {
+		userService.update(userDTO);
+		return "redirect:/user/update?id=" + userDTO.getId();
+	}
+	
+	//회원 삭제
+	@GetMapping("/delete")
+	public String delete(@ModelAttribute UserDTO userDTO,
+			HttpSession session) {
+		userService.delete(userDTO);
+		session.invalidate();
+		return "redirect:/user/";
+	}
+	
+	//아이디 중복검사
+	@PostMapping("/checkuserid")
+	public @ResponseBody String CheckUserId(@RequestParam
+			("userId") String userId) {
+		log.info(userId);
+		String checkResult = userService.checkUserId(userId);
+		return checkResult; //usable, not_usable로 반환
 	}
 }

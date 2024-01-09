@@ -8,7 +8,8 @@
 <title>회원 목록</title>
 </head>
 <body>
-	<div id="content">
+<jsp:include page="../layout/header.jsp"/>
+	<div id="container">
 		<h2>회원 목록</h2>
 		<table>
 			<tr>
@@ -17,6 +18,7 @@
 				<th>비밀번호</th>
 				<th>이름</th>
 				<th>나이</th>
+				<th>삭제</th>
 			</tr>
 			<c:forEach items="${userList}" var="user">
 			<tr>
@@ -25,9 +27,15 @@
 				<td>${user.userPasswd}</td>
 				<td>${user.userName}</td>
 				<td>${user.userAge}</td>
+				<td>
+					<a href="/user/delete?id=${user.id}">
+						<button>삭제</button>
+					</a>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>
 	</div>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

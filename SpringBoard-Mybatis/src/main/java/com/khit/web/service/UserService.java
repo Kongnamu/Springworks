@@ -14,4 +14,12 @@ public interface UserService {
 
 	UserDTO login(UserDTO userDTO);
 
+	UserDTO findByUserId(String userId);
+
+	void update(UserDTO userDTO);
+
+	void delete(UserDTO userDTO);
+
+	String checkUserId(String userId);
+
 }

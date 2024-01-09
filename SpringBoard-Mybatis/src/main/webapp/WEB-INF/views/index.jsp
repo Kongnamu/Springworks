@@ -7,13 +7,15 @@
 <title>khit Home...</title>
 </head>
 <body>
-	<h1>Home!</h1>
-	<h3>
-		<a href="/user/join">회원가입</a>&nbsp;&nbsp;&nbsp;
-		<a href="/user/">회원목록</a>&nbsp;&nbsp;&nbsp;
-		<a href="/user/login">로그인</a>&nbsp;&nbsp;&nbsp;
-		<a href="/board/write">글쓰기</a>&nbsp;&nbsp;&nbsp;
-		<a href="/board/">글목록</a>&nbsp;&nbsp;&nbsp;
-	</h3>
+	<jsp:include page="layout/header.jsp"/>
+	<div id="container">
+	<section id="main">
+		<h1>Home!</h1>
+			<div class="main_img">
+				<img src="/resources/images/윤정.jpg" alt="사람">
+			</div>
+	</section>
+	</div>
+	<jsp:include page="layout/footer.jsp"/>
 </body>
 </html>
