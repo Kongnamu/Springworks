@@ -109,4 +109,5 @@ public class BoardController {
 		boardService.update(boardDTO);
 		return "redirect:/board?id=" + boardDTO.getId();
 	}
+	
 }

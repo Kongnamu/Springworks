@@ -6,16 +6,20 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="userform"/>
+		<item key="selection" value="spring-test"/>
 		<list key="findhistory">
+			<item value="spring-test"/>
+			<item value="test"/>
+			<item value="mysql"/>
+			<item value="lombok"/>
+			<item value="jackson"/>
+			<item value="slf4j"/>
+			<item value="jdbc"/>
 			<item value="pagination"/>
 			<item value="userform"/>
 			<item value="list"/>
 			<item value="view"/>
 			<item value="documnet"/>
-			<item value="test"/>
-			<item value="mysql"/>
-			<item value="jdbc"/>
 			<item value="appServlet"/>
 			<item value="app"/>
 			<item value="1.6"/>
